@@ -7,7 +7,7 @@ void Controller::ChangeDirection(Snake &snake, Snake::Direction input,
                                  Snake::Direction opposite) const {
   if (snake.direction != opposite || snake.size == 1) snake.direction = input;
   return;
-}
+} // Change the direction of the snake based on input, unless it's the opposite direction
 
 void Controller::AlgorithmInput(bool &running, Snake &fake_snake) const {
   if (!fake_snake.ai) {
@@ -20,12 +20,13 @@ void Controller::AlgorithmInput(bool &running, Snake &fake_snake) const {
   // make it disallowed to go across the screen by using bounds check method here
 }
 
+// Handle user input for the snake's movement
 void Controller::HandleInput(bool &running, Snake &snake) const {
   if (snake.ai) {
     std::cout << "Programmer error: Used HandleInput for an AI snake.";
     return; // quick sanity check for programmer error
   }
-  SDL_Event e;
+  SDL_Event e; //// Handle key presses for directional control
   while (SDL_PollEvent(&e)) {
     if (e.type == SDL_QUIT) {
       running = false;
